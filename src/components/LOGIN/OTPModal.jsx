@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { IoClose } from "react-icons/io5";
+import BASE_URL from "../../API/baseUrl";
 
 export default function OTPModal({ onClose, onSuccess, phone, formData }) {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
@@ -62,7 +63,7 @@ export default function OTPModal({ onClose, onSuccess, phone, formData }) {
       fd.append("otp", finalOtp);
 
       const res = await axios.post(
-        "https://atmayantra-14.onrender.com/api/admin-auth/admin-verify-signup/",
+        `${BASE_URL}/admin-auth/admin-verify-signup/`,
         
         fd,
         {
@@ -103,7 +104,7 @@ export default function OTPModal({ onClose, onSuccess, phone, formData }) {
 
       // 👇 Your resend OTP API endpoint (signup resend)
       const res = await axios.post(
-        "https://atmayantra-14.onrender.com/api/admin-auth/admin-resend-signup-otp/", 
+        `${BASE_URL}/admin-auth/admin-resend-signup-otp/`, 
         fd,
         { headers: { "Content-Type": "multipart/form-data" } }
       );

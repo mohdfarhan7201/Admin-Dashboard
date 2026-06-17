@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { MdOutlineCall, MdEmail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
+import BASE_URL from "../../API/baseUrl";
 
 export default function ForgetPasswordModal({ onClose }) {
   const [step, setStep] = useState(1);
@@ -43,7 +44,7 @@ export default function ForgetPasswordModal({ onClose }) {
       form.append("email", email);
 
       const res = await axios.post(
-        "https://atmayantra-13.onrender.com/admin-auth/forgot-password/",
+        `${BASE_URL}/admin-auth/forgot-password/`,
         
         form
       );
@@ -68,7 +69,7 @@ export default function ForgetPasswordModal({ onClose }) {
       form.append("otp", otp);
 
       const res = await axios.post(
-        "https://atmayantra-13.onrender.com/admin-auth/verify-reset-otp/",
+        `${BASE_URL}/admin-auth/verify-reset-otp/`,
         
         form
       );
@@ -100,7 +101,7 @@ export default function ForgetPasswordModal({ onClose }) {
       form.append("email", email);
 
       const res = await axios.post(
-        "https://atmayantra-4.onrender.com/admin-auth/admin-resend-reset-password-otp/",
+        `${BASE_URL}/admin-auth/admin-resend-reset-password-otp/`,
         form
       );
 
@@ -130,7 +131,7 @@ export default function ForgetPasswordModal({ onClose }) {
       form.append("reset_token", resetToken);
 
       const res = await axios.post(
-        "https://atmayantra-12.onrender.com/admin-auth/reset-password/",
+        `${BASE_URL}/admin-auth/reset-password/`,
         
         form
       );

@@ -8,6 +8,7 @@ import bgimage from "../../assets/water-mark.jpg";
 import { useNavigate } from "react-router-dom";
 import OTPModal from "./Otplogin";
 import ForgetPasswordModal from "./ForgotPasswordModal"; // ✅ New import
+import BASE_URL from "../../API/baseUrl";
 
 export default function Login({ setIsSignup }) {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ export default function Login({ setIsSignup }) {
       form.append("password", formData.password);
 
       const res = await axios.post(
-        "https://atmayantra-14.onrender.com/api/admin-auth/admin-login/",
+        `${BASE_URL}/admin-auth/admin-login/`,
         
         form,
         { headers: { "Content-Type": "multipart/form-data" } }

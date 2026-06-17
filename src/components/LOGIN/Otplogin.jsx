@@ -1,87 +1,7 @@
-// import React, { useState } from "react";
-// import axios from "axios";
-// import { GoShieldLock } from "react-icons/go";
-
-// export default function OTPModal({ onClose, onSuccess, phone }) {
-//   const [otp, setOtp] = useState("");
-//   const [loading, setLoading] = useState(false);
-
-//   const handleVerifyOTP = async (e) => {
-//     e.preventDefault();
-//     setLoading(true);
-
-//     try {
-//       const form = new FormData();
-//       form.append("contact_number", phone);
-//       form.append("otp", otp);
-
-//       const res = await axios.post(
-//         "https://atmayantra-2.onrender.com/admin-auth/verify-login/",
-//         form,
-//         { headers: { "Content-Type": "multipart/form-data" } }
-//       );
-
-//       console.log("OTP Verify Response:", res.data);
-
-//       if (res.data.success === true) {
-//         alert("OTP Verified Successfully!");
-//         onSuccess(); // ✅ redirect to dashboard
-//       } else {
-//         alert(res.data.message || "Invalid OTP. Try again.");
-//       }
-//     } catch (error) {
-//       console.error("OTP Verification Error:", error);
-//       alert("Something went wrong!");
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
-
-//   return (
-//     <div className="fixed inset-0  bg-opacity-40 backdrop-blur-sm flex justify-end  items-center z-[9999]">
-//       <div className="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md relative mr-120">
-//         {/* Close button */}
-//         <button
-//           onClick={onClose}
-//           className="absolute top-3 right-3 text-gray-500 hover:text-red-600 text-xl"
-//         >
-//           ✕
-//         </button>
-
-//         <GoShieldLock className="text-5xl text-teal-600 mx-auto mb-4" />
-//         <h2 className="text-2xl font-semibold text-gray-800 mb-2 text-center">
-//           Verify OTP
-//         </h2>
-//         <p className="text-gray-600 text-center mb-6">
-//           Enter the OTP sent to <br />
-//           <strong>{phone}</strong>
-//         </p>
-
-//         <form onSubmit={handleVerifyOTP}>
-//           <input
-//             type="text"
-//             value={otp}
-//             onChange={(e) => setOtp(e.target.value)}
-//             placeholder="Enter OTP"
-//             required
-//             className="w-full border border-gray-300 rounded-md p-3 text-center mb-4 focus:outline-none focus:ring-2 focus:ring-teal-600"
-//           />
-//           <button
-//             type="submit"
-//             disabled={loading}
-//             className="w-full bg-teal-600 text-white py-2 rounded-md hover:bg-teal-700 font-semibold transition-colors"
-//           >
-//             {loading ? "Verifying..." : "Verify OTP"}
-//           </button>
-//         </form>
-//       </div>
-//     </div>
-//   );
-// }
-
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { IoClose } from "react-icons/io5";
+import BASE_URL from "../../API/baseUrl";
 
 export default function OTPModal({ onClose, onSuccess, phone }) {
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
@@ -141,7 +61,7 @@ export default function OTPModal({ onClose, onSuccess, phone }) {
       form.append("otp", finalOtp);
 
       const response = await axios.post(
-        "https://atmayantra-14.onrender.com/api/admin-auth/admin-verify-login/",
+        `${BASE_URL}/admin-auth/admin-verify-login/`,
         
         form,
         { headers: { "Content-Type": "multipart/form-data" } }
@@ -183,7 +103,7 @@ export default function OTPModal({ onClose, onSuccess, phone }) {
       form.append("contact_number", phone);
 
       const response = await axios.post(
-        "https://atmayantra-14.onrender.com/admin-auth/resend-login-otp/",
+        `${BASE_URL}/admin-auth/resend-login-otp/`,
          // 👈 your resend OTP API endpoint
         form,
         { headers: { "Content-Type": "multipart/form-data" } }

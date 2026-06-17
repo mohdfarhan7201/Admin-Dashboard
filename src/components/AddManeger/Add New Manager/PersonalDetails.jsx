@@ -4,6 +4,7 @@ import { FaCamera } from "react-icons/fa";
 import axios from "axios";
 import Default from "../../../assets/default.jpg";
 import { useTheme } from "../../../context/ThemeContext";
+import BASE_URL from "../../../API/baseUrl";
 
 export default function PersonalDetails({ nextStep }) {
   const [image, setImage] = useState(Default);
@@ -74,7 +75,7 @@ export default function PersonalDetails({ nextStep }) {
     }
 
     const response = await axios.post(
-      "https://atmayantra-14.onrender.com/api/admin-auth/manager/step1/",
+      `${BASE_URL}/admin-auth/manager/step1/`,
       data,
       {
         headers: {

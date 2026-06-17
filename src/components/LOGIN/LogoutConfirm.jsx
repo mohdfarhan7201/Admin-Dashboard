@@ -89,12 +89,10 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { FaLock } from "react-icons/fa";
 import axios from "axios";
+import BASE_URL from "../../API/baseUrl";
 
 export default function LogoutConfirm() {
   const navigate = useNavigate();
-
-  // BASE URL
-  const BASE_URL = "https://atmayantra-14.onrender.com";
 
   const DECODE_API = `${BASE_URL}/admin-auth/admin-decode-token/`;
   const REFRESH_API = `${BASE_URL}/admin-auth/admin-refresh-token/`;
@@ -184,7 +182,7 @@ export default function LogoutConfirm() {
       if (newToken) {
         token = newToken;
       } else {
-        console.warn("🚫 Could not refresh token");
+        console.warn(" Could not refresh token");
         localStorage.clear();
         navigate("/");
         return;
